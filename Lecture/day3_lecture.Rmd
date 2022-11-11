@@ -1,0 +1,291 @@
+---
+title: "Data Science for Beginners, University of Essex"
+subtitle: "Day 3: Basic Data Structures"
+author: "Dr. Howard Liu"  #If multiple, 'c("A", "B")'
+date: "12-01-2022"  #r Sys.Date()
+output:
+  html_document: default
+  pdf_document: default
+  nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+## Learning Objectives Today
+1. Vectors
+2. Matrices
+3. Lists
+4. The apply functions (why sometimes it makes things faster than loops)
+
+
+# 1. Creating a Vector 
+
+So far we have worked with single numbers. For example, we have seen how to  multiply a single number 3 by another single number 23. (i.e., 3 * 23). 
+
+In statistical analysis, we will be working with *sequences* and *tables* of numbers rather than single numbers. They are called vectors and matrices. 
+
+A vector is nothing but a collection of numbers. Vectors do not have to be sequential or ordered. 
+
+The easiest way to create a vector is to use the `c` function. (short for concatenate or combine). 
+```{r, include=T, message=F, warning=FALSE}
+c(2, -1, 0, 9)
+```
+
+The above is a vector that binds together four numbers, 2, -1, 0, 9. We can also store this vector into an object.
+```{r, include=T, message=F, warning=FALSE}
+vec.1 <- c(2, -1, 0, 9)
+```
+
+
+Another way to create a vector is to use the seq function (short for sequence). As the name implies, this function creates a sequence from one number to another. It takes at least two arguments, from and to
+```{r, include=T, message=F, warning=FALSE}
+seq(from = 0, to = 10)
+
+seq(from = 5, to = 1)
+```
+
+There are some additional arguments you may provide, "by" or "length". The "by" arguments specifies the increments. 
+
+For example, if we specify "by = 0.5", R will create a sequence with an increment of 0.5.
+```{r, include=T, message=F, warning=FALSE}
+seq(from = 0, to = 5, by = 0.5)
+```
+
+The "length" arguments determines the number of elements of the resulting sequence. For example, if we specify "length = 10", R will create a sequence that has 10 elements (numbers).
+```{r, include=T, message=F, warning=FALSE}
+seq(from = 0, to = 2, length = 10)
+
+# For obvious reasons, we cannot use "by" and "length" simultaneously. 
+# seq(from = 0, to = 5, by = 0.5, length = 10)
+```
+
+## 1-2: Vector operations
+
+Let's create several vectors and perform some operations on them. 
+```{r, include=T, message=F, warning=FALSE}
+x.vec <- seq(from = 2, to = 6)
+y.vec <- c(3, 0, 1, -2, 4.3)
+
+x.vec
+y.vec
+```
+
+We can do arithmetic operations with vectors. For example
+```{r, include=T, message=F, warning=FALSE}
+
+x.vec + 3 # adds three to every number in the vector.
+```
+
+Since the number of elements is the same for x.vec and y.vec, we can do arithmetic operations with them. 
+
+
+What would happen if we try to combine two vectors of different length? It turns out that R will still work, but the output may not be what you'd expect. Moreover, R gives you a warning. 
+
+
+# 2. Creating a Matrix 
+
+```{r echo=FALSE}
+knitr::include_graphics("imgs/the-matrix-4-rebooted.jpeg")
+```
+
+Well...It would be cool to generate the virtual reality in the movie **Matrix**. But fellas, we are not there yet as programming beginners. 
+
+So what does matrices mean in R? It means that when we have a collection of numbers that are arranged in two dimensions rather than one, we say we have a matrix. We can create one using the matrix function.
+
+```{r, include=T, message=F, warning=FALSE}
+mat.1 <- matrix(data = seq(from = 1, to = 12), nrow = 3, ncol = 4)
+mat.1
+```
+Let's see what the code above does. The first argument "data = ..." specifies the contents (numbers) that are stored in the matrix called mat.1. In this particular case, we tell R to create a sequence of numbers from 1 to 12 (1,2,3,4,...,11,12). 
+
+The second argument "nrow = ..." specifies the number of rows. The third argument "ncol = ..." specifies the number of columns. 
+
+When using functions that take multiple arguments like this, it is advisable that you provide arguments in separate lines, as follows
+
+```{r, include=T, message=F, warning=FALSE}
+mat.1 <- matrix(data = seq(from = 1, to = 12), 
+                nrow = 3, 
+                ncol = 4)
+mat.1
+```
+This is to improve readability of your code. Readers can easily see that you are providing nrow and ncol as arguments for the matrix function, not for the seq function.
+
+
+Notice that a matrix is nothing but a collection of vectors (and a vector is nothing but a collection of numbers). In other words, we can break down any matrices into vectors. 
+
+There are two ways to break down this matrix. First, we can think of this matrix as being made up with three **row vectors**. The first row vector is ``1 4 7 10``, the second is ``2 5 8 11``, and the third is ``3 6 9 12``. 
+
+To extract (row or column) vectors, we use **square brackets []**. For example, to extract the second row vector, we write
+```{r, include=T, message=F, warning=FALSE}
+mat.1[2, ]
+```
+
+Or the third column:
+```{r, include=T, message=F, warning=FALSE}
+mat.1[, 3]
+```
+
+Or a specific cell entry: 
+```{r, include=T, message=F, warning=FALSE}
+mat.1[2 , 3]
+```
+
+We can transpose a matrix
+```{r, include=T, message=F, warning=FALSE}
+t(mat.1)
+```
+
+We can also create a matrix by combining multiple vectors. Recall that we have created two vectors, x.vec and y.vec above. We can create new matrices by binding these two together. The `rbind()` function binds multiple vectors, treating them as row vectors. 
+```{r, include=T, message=F, warning=FALSE}
+rbind(x.vec, y.vec)
+```
+
+Similarly, the `cbind()` function binds multiple vectors treating them as column vectors. 
+```{r, include=T, message=F, warning=FALSE}
+cbind(x.vec, y.vec)
+```
+
+
+# 3. Creating a List 
+
+Lists are the R objects which contain elements of different types like − numbers, strings, vectors and another list inside it. A list can also contain a matrix or a function as its elements. List is created using `list()` function.
+
+
+## 3-1: Creating a List
+
+Let's create a list containing strings, numbers, vectors and a logical values.
+```{r, include=T, message=F, warning=FALSE}
+list_data <- list("Red", "Green", c(21,32,11), TRUE, 51.23, 119.1)
+list_data
+```
+
+
+Create a list containing a vector, a matrix and a list.
+```{r, include=T, message=F, warning=FALSE}
+list_data <- list(c("Jan","Feb","Mar"), matrix(c(3,9,5,1,-2,8), nrow = 2),
+                  list("green",12.3))
+list_data
+```
+
+Give names to the elements in the list.
+```{r, include=T, message=F, warning=FALSE}
+names(list_data) <- c("1st Quarter", "A_Matrix", "A Inner list")
+list_data
+```
+
+## 3-2: Accessing List Elements
+Elements of the list can be accessed by the index of the element in the list. In case of named lists it can also be accessed using the names.
+
+```{r, include=T, message=F, warning=FALSE}
+list_data <- list(c("Jan","Feb","Mar"), matrix(c(3,9,5,1,-2,8), nrow = 2),
+                  list("green",12.3))
+
+# Give names to the elements in the list.
+names(list_data) <- c("1st Quarter", "A_Matrix", "A Inner list")
+
+# Access the first element of the list withe the name.
+list_data[1]
+
+# Access the first element of the list w/o the name.
+list_data[1][[1]]
+
+# Extract the values from within the first element
+list_data[1][[1]][1]
+```
+
+Access the list element using the name of the element.
+```{r, include=T, message=F, warning=FALSE}
+list_data$A_Matrix
+```
+
+
+## 3-3: Merging Lists
+You can merge many lists into one list by placing all the lists inside one `list()` function.
+
+```{r, include=T, message=F, warning=FALSE}
+list1 <- list(1,2,3)
+list2 <- list("Sun","Mon","Tue")
+
+# Merge the two lists by this way:
+list(list1,list2) 
+
+# Or this way
+merged.list <- c(list1,list2)
+
+merged.list
+```
+
+## 3-4: Converting List to Vector
+A list can be converted to a vector so that the elements of the vector can be used for further manipulation. All the arithmetic operations on vectors can be applied after the list is converted into vectors. To do this conversion, we use the unlist() function. It takes the list as input and produces a vector.
+
+```{r, include=T, message=F, warning=FALSE}
+list1 <- list(1:5)
+
+# Convert the lists to vectors.
+v1 <- unlist(list1)
+v1
+```
+
+# 4. Apply functions 
+ They are powerful when you want to achieve a simple task but don't want to write a loop which will computationally take longer time than you would want to.
+
+## 4-1: `apply()` function
+apply() takes **Data frame** or **matrix** as an input and gives output in **vector**, **list** or **array**. Apply function in R is primarily used to avoid explicit uses of loop constructs. It is the most basic of all collections and can be used over a matrix. The Syntex is:
+```{r, include=T, message=F, warning=FALSE}
+# apply(X, MARGIN, FUN)
+```
+
+Example: We want to calculate the mean of all the columns in a matrix.
+```{r, include=T, message=F, warning=FALSE}
+m1 <- matrix(c(1:10), nrow=5, ncol=6)
+m1
+
+a_m1 <- apply(m1, 2, sum) # 1: means rows 2: means columns
+a_m1 # output as a vector
+```
+
+
+## 4-2: `lapply()` function 
+`lapply()` function is useful for performing operations on a **list object** as an input and returns a **list object** as an output of same length of original set. `lapply()` returns a list of the similar length as input list object, each element of which is the result of applying FUN to the corresponding element of list. Lapply in R takes list, vector or data frame as input and gives output in list. The Syntex is:
+
+```{r, include=T, message=F, warning=FALSE}
+# lapply(X, FUN)
+# Arguments:
+# -X: A vector or an object
+# -FUN: Function applied to each element of x	
+```
+
+```{r, include=T, message=F, warning=FALSE}
+movies <- c("SPYDERMAN","BATMAN","VERTIGO","CHINATOWN")
+movies
+movies_lower <-lapply(movies, tolower) # FUN --> convert them all to lower cases
+movies_lower
+
+unlist(movies_lower) # We can unlist it back to a vector
+```
+
+## 4-3: `sapply()` function
+`sapply()` function takes **list, vector or data frame** as input and gives output in **vector or matrix**. It is useful for operations on list objects and returns a list object of same length of original set. `Sapply()` function in R does the same job as `lapply()` function but returns a vector.
+
+```{r, include=T, message=F, warning=FALSE}
+# sapply(X, FUN)
+# Arguments:
+# -X: A vector or an object
+# -FUN: Function applied to each element of x
+```
+Example: We load the default `cars` dataset from the base R
+
+```{r, include=T, message=F, warning=FALSE}
+dt <- cars
+head(dt) # only print out a part of this data
+```
+
+```{r, include=T, message=F, warning=FALSE}
+lmn_cars <- lapply(dt, min) # output is a list
+lmn_cars
+smn_cars <- sapply(dt, min) # output is a vector
+smn_cars
+```
+
+### Great! We've finished the lecture and you can go to day3 exercise to do some additional practices for today's content.
