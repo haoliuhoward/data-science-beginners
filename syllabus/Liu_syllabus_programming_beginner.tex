@@ -1,0 +1,400 @@
+\documentclass[11pt, a4paper]{article}
+%\usepackage{geometry}
+\usepackage[inner=1.5cm,outer=1.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{fancyhdr, lastpage, bbding, pmboxdraw}
+\usepackage[usenames,dvipsnames]{color}
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{darkgreen}{rgb}{0,.6,0}
+\definecolor{red}{rgb}{.98,0,0}
+\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false]{hyperref}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{Harmless Data Science Programming in R for Beginners} }
+%\chead{ \fancyplain{}{} }
+\rhead{ \fancyplain{}{\today} }
+%\rfoot{\fancyplain{}{page \thepage\ of \pageref{LastPage}}}
+\fancyfoot[RO, LE] {page \thepage\ of \pageref{LastPage} }
+\thispagestyle{plain}
+
+%%%%%%%%%%%% LISTING %%%
+\usepackage{listings}
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\usepackage{verbatim} % used to display code
+\usepackage{fancyvrb}
+\usepackage{acronym}
+\usepackage{amsthm}
+\VerbatimFootnotes % Required, otherwise verbatim does not work in footnotes!
+
+
+
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.93}
+
+
+
+\lstset{
+%language=bash,                          % Code langugage
+basicstyle=\ttfamily,                   % Code font, Examples: \footnotesize, \ttfamily
+keywordstyle=\color{OliveGreen},        % Keywords font ('*' = uppercase)
+commentstyle=\color{gray},              % Comments font
+numbers=left,                           % Line nums position
+numberstyle=\tiny,                      % Line-numbers fonts
+stepnumber=1,                           % Step between two line-numbers
+numbersep=5pt,                          % How far are line-numbers from code
+backgroundcolor=\color{lightlightgray}, % Choose background color
+frame=none,                             % A frame around the code
+tabsize=2,                              % Default tab size
+captionpos=t,                           % Caption-position = bottom
+breaklines=true,                        % Automatic line breaking?
+breakatwhitespace=false,                % Automatic breaks only at whitespace?
+showspaces=false,                       % Dont make spaces visible
+showtabs=false,                         % Dont make tabls visible
+columns=flexible,                       % Column format
+morekeywords={__global__, __device__},  % CUDA specific keywords
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}
+{\Large \textsc{Harmless Data Science Programming in R for Beginners}}
+\end{center}
+\begin{center}
+January 2021
+\end{center}
+%\date{September 26, 2014}
+
+\begin{center}
+\rule{6in}{0.4pt}
+\begin{minipage}[t]{.75\textwidth}
+\begin{tabular}{llcccll}
+\textbf{Instructor:} & Dr. Howard Liu & & &  & \textbf{Time:} & 14:00 -- 18:00 (GMT)\\
+\textbf{Email:} &  \href{mailto:howard.liu@essex.ac.uk}{howard.liu@essex.ac.uk} & & & & \textbf{Place:} & Zoom
+\end{tabular}
+\end{minipage}
+\rule{6in}{0.4pt}
+\end{center}
+\vspace{.5cm}
+\setlength{\unitlength}{1in}
+\renewcommand{\arraystretch}{2}
+
+% \noindent\textbf{Course Pages:} 
+% \begin{enumerate}
+% \item \url{http://howardliu.org/teaching}
+% \end{enumerate}
+
+\vskip.10in
+\noindent\textbf{Objectives:} This five-day workshop is designed to prepare students for future courses at the University of Essex when they have no previous programming experience in R. The instructor will teach you how to run R in RStudio (a R programming environment), how to work with basic objects and run operations, and also how to create/merge/subset a data frame. We will also cover some basic data visualization techniques. The workshop has two components daily. It will start with a programming lecture session and then a practice session where students' questions can be answered interactively and in real-time. 
+
+\vskip.10in
+\noindent\textbf{Slack:}
+Using Slack, a online chat platform, to teach programming has been proven to be very successful both in my own experiences and the others. After having your email addresses, I will enroll you onto our Slack workplace where you can ask questions by pasting your scripts as well as error messages. The instructor and a teaching assistant would be able to help out in real-time.
+
+\vskip.10in
+\noindent\textbf{Office Hours:} Right after the lecture. The instructor will be available on Zoom as well as on Slack.
+
+
+%% 準備 lecture in Rmd (1hr)  [Sta532]
+%% 準備 lab practice exercise (simple ones)
+%% --> 一週準備　(錄影給之後學生用)
+
+
+% \vspace*{.10in}
+% \noindent \textbf{Tentative Course Outline:}
+% \begin{center} 
+% \begin{minipage}{5in}
+% \begin{flushleft}
+% %Chapter 1 \dotfill ~$\approx$ 3 days \\
+% {\color{darkgreen}{\Rectangle}} ~A little of probability theory and graph theory. This course also puts high emphasis on hand-on practice so every lecture will be accompanied by R homework for students to practice what they have learned in lecture.
+% \end{flushleft}
+% \end{minipage}
+% \end{center}
+
+% \vspace*{.10in}
+% \noindent\textbf{Grading Policy:} Homework and quizzes (30\%),  Midterm 1 (20\%), Midterm 2 (20\%), Final (30\%). %Four Projects (40\% = 4 * 10\%)
+
+% \vskip.10in
+% \noindent\textbf{Important Dates:}
+% \begin{center} \begin{minipage}{3.8in}
+% \begin{flushleft}
+% Midterm \#1      \dotfill October 16  \\
+% Midterm \#2      \dotfill November, 5  \\
+% %Project Deadline \dotfill ~Month Day \\
+% Final Exam       \dotfill December, 20  \\
+% \end{flushleft}
+% \end{minipage}
+% \end{center}
+
+% \vskip.10in
+% %\noindent\textbf{Course Structure:}  
+
+
+% % \vskip.10in
+% % \noindent\textbf{Class Policy:}  
+% % \begin{itemize}
+% % \item Regular attendance is essential and expected.
+% % \end{itemize}
+
+% \vskip.10in
+% \noindent\textbf{Academic Honesty:}   Lack of knowledge of the academic honesty policy is not a reasonable explanation for a violation.
+
+% \vskip.15in
+% \noindent\textbf{Acknowledgement: } The design of this course was inspired Prof. Pablo Barber\'a.
+
+%%%%
+\newpage
+\section*{Course content}
+\subsection*{Day 1 (Jan. 10th): Introduction and R Basics}
+
+\begin{itemize}
+   \item Get familiar with RStudio Interface
+   \item Basic mathematical operations
+   \item R data types (e.g., character, numeric, logical, factor)
+   \item Object and variable assignments
+   % \item Sequences (e.g., 1 to 100; 1, 3, 5 etc.)
+   \item Testing for missing data
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% \vspace{0.3cm}
+\subsection*{Day 2 (Jan. 11th): Common Functions in R (Essential for Daily Programming)}
+\begin{itemize}
+   \item if-else and else-if statements
+   \item ifelse() function
+   \item for Loop 
+   \item while Loop
+   \item Break \& next statement 
+   \item Creating functions
+   \item the apply functions
+\end{itemize}
+
+
+% \vspace{0.3cm}
+\subsection*{Day 3 (Jan. 12th): Basic Data Structures (Vector, Matrix, and List)}
+
+\begin{itemize}
+   \item Creating a Vector (a collection of ``things'')
+   \item Vector operations
+   \item Creating a Matrix (a collection of ``things'' arranged in the format of rows and columns)
+   \item Matrix operations
+   \item Creating a List (a collection of ``things'' arranged in the format of an ordered list)
+   \item Subsetting or slicing List
+\end{itemize}
+
+
+\subsection*{Day 4 (Jan. 13th): Data Frame}
+
+\begin{itemize}
+   \item Import and export data frames
+   \item Working with data frames
+   \item Subsetting
+   \item Merging
+   \item Doing data manipulation with the easy-to-use dplyr function
+   \item Pipeline operator
+\end{itemize}
+
+
+\subsection*{Day 5 (Jan. 14th): Data Visualization and Beyond}
+
+\begin{itemize}
+   \item Drawing nice figures with the friendly ggplot function
+   \item Scatter plots 
+   \item Histograms
+   \item Visualizing time-series data
+   \item Visualizing cross-sectional data
+   % \item Using GitHub to save your code
+   % \item Using R markdown to report easy-to-read analysis
+
+\end{itemize}
+
+% \subsection*{Week 3: 09/05 Working with Big(gish) Data 2: SQL}
+% \begin{itemize}
+%    \item Beaulieu, Alan. Learning SQL. " O'Reilly Media, Inc.", 2005. Chapter one.
+% \end{itemize}
+% R code
+% \begin{itemize}
+%    \item SQL, SQLite \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+%    \item Hadoop, Spark \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+% \end{itemize}
+
+% %%%%%%%%%%%%%%%%%%%%%%
+% \vspace{0.3cm}
+% \subsection*{\Large Section 2: Text Data and Analysis}
+% \subsection*{Week 5: 09/19 Working with Text Data 1: Text management}
+% \begin{itemize}
+%    \item Grimmer, J., \& Stewart, B. M. (2013). ``Text as data: The promise and pitfalls of automatic content analysis methods for political texts.'' Political Analysis, 21(3), 267-297. \href{https://www.cambridge.org/core/journals/political-analysis/article/div-classtitletext-as-data-the-promise-and-pitfalls-of-automatic-content-analysis-methods-for-political-textsdiv/F7AAC8B2909441603FEB25C156448F20}{\color{blue}{Link}}
+%    \item Lucas, Christopher, et al. (2015) "Computer-assisted text analysis for comparative politics." Political Analysis 23(2), 254-277. \href{https://scholar.princeton.edu/sites/default/files/bstewart/files/comparativepoliticstext.pdf}{\color{blue}{Link}}
+%    \item Denny, M. J., \& Spirling, A. (2018). ``Text Preprocessing For Unsupervised Learning: Why It Matters, When It Misleads, And What To Do About It.'' Political Analysis, 26(2), 168-189. 
+%    \href{https://www.cambridge.org/core/journals/political-analysis/article/text-preprocessing-for-unsupervised-learning-why-it-matters-when-it-misleads-and-what-to-do-about-it/AA7D4DE0AA6AB208502515AE3EC6989E}{\color{blue}{Link}} 
+% \end{itemize}
+% R code
+% \begin{itemize}
+%      \item Regular expressions and stringr \href{https://cran.r-project.org/web/packages/rvest/vignettes/selectorgadget.html}{\color{blue}{Link}} \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+%      %\href{https://cran.r-project.org/web/packages/rvest/vignettes/selectorgadget.html}{\color{blue}{Rvest}
+% \end{itemize}
+
+
+% % scraping
+% \subsection*{Week 6: 09/26 Working with Text Data 2: Web scrapping}
+% \begin{itemize}
+%    \item Munzert, Simon, et al. Automated Data Collection with R: A Practical Guide to Web Scraping and Text Mining. John Wiley \& Sons, 2014. Introduction, pp.1-23.
+% \end{itemize}
+% R code
+% \begin{itemize}
+%    \item Web scrapping \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+% \end{itemize}
+
+
+
+
+% % topic modeling
+% \subsection*{Week 7: 10/03 Working with Text Data 3: unsupervised machine learning (Topic models)}
+% \begin{itemize}
+%    \item Roberts, M. E., Stewart, B. M., Tingley, D., Lucas, C., Leder‐Luis, J., Gadarian, S. K., \& Rand, D. G. (2014). ``Structural Topic Models for Open‐Ended Survey Responses.'' American Journal of Political Science, 58(4), 1064-1082.
+%  \href{https://authors.library.caltech.edu/52278/7/topicmodelsopenendedexperiments.pdf}{\color{blue}{Link}}
+%    \item Lucas, C., Nielsen, R. A., Roberts, M. E., Stewart, B. M., Storer, A., \& Tingley, D. (2015). ``Computer-assisted text analysis for comparative politics.'' Political Analysis, 23(2), 254-277. \href{https://scholar.princeton.edu/sites/default/files/bstewart/files/comparativepoliticstext.pdf}{\color{blue}{Link}} 
+ 
+% \end{itemize}
+% R code
+% \begin{itemize}
+%    \item STM in R \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+% \end{itemize}
+
+% % NLP
+% \subsection*{Week 8: 10/10 Working with Text Data 4: Automated Event Data Creation}
+% \begin{itemize}
+%    \item Beieler, John. (2016) ``Creating a Real-Time, Reproducible Event Dataset.'' \href{https://arxiv.org/pdf/1612.00866.pdf}{\color{blue}{Link}}
+%    %\href{https://arxiv.org/pdf/1612.00866.pdf}{\color{blue}{Link}
+%    \item Lee, Sophie J., Howard Liu, and Michael D. Ward. "Lost in Space: Geolocation in Event Data." Political Science Research and Methods (2018): 1-18. \href{http://howardliu.org/files/Liu_lostinSpace_PSRM.pdf}{\color{blue}{Link}}
+
+% \end{itemize}
+% R code
+% \begin{itemize}
+%    \item OpenNLP, stanfordNLP, MITIE \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+%    \item rword2vec \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+% \end{itemize}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%
+% \vspace{0.3cm}
+% \subsection*{\Large Section 3: Network Data and Analysis}
+% % network
+% \subsection*{Week 9: 10/17 Working with Relational Data 1: Network Visualization}
+% \begin{itemize}
+%    \item Sinclair, B. (2016). ``Network Structure and Social Outcomes: Network Analysis for Social Science'', in Alvarez, M. (ed.) Computational Social Science. Cambridge: Cambridge University Press. 
+% \end{itemize}
+% R code
+% \begin{itemize}
+%    \item igraph \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+% \end{itemize}
+
+% % network2
+% \subsection*{Week 9: 10/24 Working with Relational Data 2: Descriptive Network Analysis}
+% \begin{itemize}
+%    \item Kolaczyk, Eric D., and Gabor Csardi. Statistical Analysis of Network Data with R. Vol. 65. New York: Springer, 2014. \emph{chapter 4.}
+% \end{itemize}
+% R code
+% \begin{itemize}
+%    \item Centrality, Density, Graph partitioning \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+% \end{itemize}
+
+
+% % network3
+% \subsection*{Week 9: 11/07 Working with Relational Data 3: Inferential Network Analysis (ERGM)}
+% \begin{itemize}
+%    \item Harris, Jenine K. An Introduction to Exponential Random Graph Modeling. Vol. 173. Sage Publications, 2013. \emph{chapter One.}
+% \end{itemize}
+% R code
+% \begin{itemize}
+%    \item ERGM, TERGM \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+% \end{itemize}
+
+% % network4
+% \subsection*{Week 9: 11/14 Working with Relational Data 4: Inferential Network Analysis (Latent space)}
+% \begin{itemize}
+%    \item Minhas, Shahryar, Peter D. Hoff, and Michael D. Ward. (2019). "Inferential Approaches for Network Analyses: AMEN for Latent Factor Models." Political Analysis. 27(2), 208-222. \href{https://www.cambridge.org/core/journals/political-analysis/article/inferential-approaches-for-network-analysis-amen-for-latent-factor-models/C5766B1FC01B5C875500B5724F162889}{\color{blue}{Link}}
+% \end{itemize}
+% R code
+% \begin{itemize}
+%    \item AMEN \href{https://cran.r-project.org/web/packages/amen/vignettes/amen.pdf}{\color{blue}{(.Rmd file)}}
+% \end{itemize}
+
+
+% % network4
+% \subsection*{Week 9: 11/21 Working with Relational Data 5: Community Detection}
+% \begin{itemize}
+%    \item Mucha, Peter J., et al. (2010). "Community structure in time-dependent, multiscale, and multiplex networks." Science 328(5980)  876-878. 
+%    \item Traag, Vincent. Algorithms and Dynamical Models for Communities and Reputation in Social Networks. Springer, 2014. \emph{Chapter 2.}
+%    \item Beardsley, K., Liu, H., Mucha, P., Siegel, D., \& Tellez, J. (2019). ``Hierarchy and the Provision of Order in International Politics'' \href{http://howardliu.org/files/hierarchy-networks-JOP.pdf}{\color{blue}{Link}}
+% \end{itemize}
+% R code
+% \begin{itemize}
+%    \item igraph \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+% \end{itemize}
+
+
+% %%%%%%%%%%%%%%%%%%%%%%
+% \vspace{0.3cm}
+% \subsection*{\Large Section 4: Spatial Data and Analysis}
+% \subsection*{Week 9: 11/28 Spatial Data, GIS, and Spatial Modeling}
+% \begin{itemize}
+%    \item Ward, M. D., \& Gleditsch, K. S. (2008). Spatial Regression Models. Sage. \emph{Chapters 1 and 2}
+
+%    \item Hammond, Jesse. ``Maps of mayhem: Strategic location and deadly violence in civil war.'' Journal of Peace Research 55.1 (2018): 298-312. \href{https://journals.sagepub.com/doi/10.1177/0022343317702956}{\color{blue}{Link}}
+
+%    \item S. Schutte ``Regions at Risk: Predicting Conflict Zones in African Insurgencies.'' Political Science Research and Methods (2017) 5(3): 447-465.  \href{https://www.cambridge.org/core/journals/political-science-research-and-methods/article/regions-at-risk-predicting-conflict-zones-in-african-insurgencies/4DCDBA2BCC8B4E3D5057A2C37DDB2BD6}{\color{blue}{Link}} 
+
+% \end{itemize}
+% R code
+% \begin{itemize}
+%    \item GIS shapefiles: points, lines, or polygons data \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+% \end{itemize}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%
+% \vspace{0.3cm}
+% \subsection*{\Large Section 5: Image and Audio Data Analysis}
+% \subsection*{Week 9: 12/05 Deep Learning: Audiovisual Data}
+% \begin{itemize}
+%    \item Joo, Jungseock  \& Steinert-Threlkeld, Zachary C. (2019) Image as Data: Automated Visual Content Analysis for Political Science \href{https://arxiv.org/pdf/1810.01544.pdf?fbclid=IwAR0nmcuNcgwGeIAZNcDOXSlS0M31F8IdgcaqPj3p1hULXXjo-zYAtPPH6eU}{\color{blue}{Link}} 
+%    \item LeCun, Y., Bengio, Y., \& Hinton, G. (2015). Deep learning. Nature, 521(7553), 436-444
+%    \item Knox, D. and Lucas, C. (2017). A General Approach to Classifying Mode of Speech: The Speaker-Affect Model for Audio Data. Working paper, MIT  \href{http://christopherlucas.org/files/PDFs/sam.pdf}{\color{blue}{Link}} 
+
+% \end{itemize}
+% R code
+% \begin{itemize}
+%    \item Neural networks \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+% \end{itemize}
+
+% %%%%%%%%%%%%%%%%%%%%%%
+% \vspace{0.3cm}
+% \subsection*{\Large Section 6: Machine Learning and Predictive Modeling}
+% \subsection*{Week 10: 12/12 Predictive Modeling}
+% \begin{itemize}
+   
+%    \item Kuhn, Max \& Johnson, Kjell (2013). Applied Predictive Modeling  \href{http://appliedpredictivemodeling.com/}{\color{blue}{Link}} 
+%    \item James, Gareth, et al. An Introduction To Statistical Learning. Vol. 112. New York: springer, 2013. pp.127-197.
+%    \item Cranmer, S. \& Desmarais, B. (2017). ``What Can We Learn from Predictive Modeling?'' Political Analysis, 25(2) pp. 145-166. 
+
+% \end{itemize}
+% R code
+% \begin{itemize}
+%    \item (Bayesian) Ridge Regression, LASSO, Trees and Forests, Ensemble Methods, SVM  \href{https://github.com/haoliuhoward}{\color{blue}{(.Rmd file)}}
+% \end{itemize}
+
+% %%%%%%%%%%%%%%%%%%%%%%
+% \vspace{0.3cm}
+% \subsection*{Week 11: 12/19 Presentations}
+% Student presentations of final projects.
+
+%%%%%% THE END 
+\end{document} 
