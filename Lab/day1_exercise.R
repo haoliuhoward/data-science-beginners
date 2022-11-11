@@ -1,0 +1,112 @@
+##-------------------------------------------------------------------------
+## R code for Data Science for Beginners Day 1: Individual Exercise
+## University of Essex
+## Author: Howard Liu
+##-------------------------------------------------------------------------
+
+
+# Task 1. Modify the author name above to your name -----------------------
+
+
+
+# Task 2. Perform the following calculations by writing R commands --------
+
+# 2-1: Multiply 4 by 30 plus 6, and then raise the answer to the power of 0.5
+(4 * (30 +6)) ^ 0.5
+
+# WRITE YOUR ANSWER HERE (Make sure you delete or comment out this line)
+
+# 2-2: Multiply 4 by 30, then add 6 and then raise the answer to the power of 0.5
+
+# WRITE YOUR ANSWER HERE (Make sure you delete or comment out this line)
+
+# Note that 2-1 and 2-2 should give you DIFFERENT answers, because these
+# are different operations. 
+
+
+# Task 3. Working with objects --------------------------------------------
+
+# 3-1: Create an object called "X1" which is the number 73
+
+# WRITE YOUR ANSWER (code) HERE
+
+# 3-2: Create another object called "X2" which is the answer to the sum 99 + 38
+
+# WRITE YOUR ANSWER (code) HERE
+
+# 3-3: Multiply X1 and X2 together and store the answer as another object called "X3"
+
+# WRITE YOUR ANSWER (code) HERE
+
+# 3-4: Subtract 1 from X3, and then raise the answer to the power of 0.25
+
+# WRITE YOUR ANSWER (code) HERE
+
+# Note: the answer should be 10. 
+
+
+
+# Task 4. Calculation using objects ---------------------------------------
+# Redo the calculation in 2-1 (Multiply 4 by 30 plus 6, and then raise the 
+# answer to the power of 0.5), but this time do so by creating objects. 
+# Take the following steps
+
+
+# 4-1: Create an object called part.1 that is equal to "30 plus 6"
+
+# WRITE YOUR ANSWER (code) HERE
+
+
+# 4-2: Create an object called part.2 that is equal to 4 times part.1
+
+# WRITE YOUR ANSWER (code) HERE
+
+
+# 4-3: Raise part.2 to the power of 0.5
+
+# WRITE YOUR ANSWER (code) HERE
+
+
+# The numerical answer you get here should be the same as your answer for 2.1
+
+
+
+# Task 5. Detecting R data types ---------------------------------------------------
+
+
+# 3-1 Create a character vector and show that it is character. It'd be nice if you can do it in one line of code
+
+# WRITE YOUR ANSWER (code) HERE
+
+# 3-2 Create a numeric vector and coerce it to a factor vector. It'd be nice if you can do it in one line of code
+
+# WRITE YOUR ANSWER (code) HERE
+
+
+
+# Task 6. Testing NA ---------------------
+
+# 6-1 Create a numeric vector with NA 
+
+# WRITE YOUR ANSWER (code) HERE
+
+# 6-2 Show me where the NA is located in the vector (using the which() function)
+
+# WRITE YOUR ANSWER (code) HERE
+
+# 6-1 Create a numeric vector with NaN  
+
+# WRITE YOUR ANSWER (code) HERE
+
+# 6-2 Show me where the NaN  is located in the vector (using the which() function)
+
+# WRITE YOUR ANSWER (code) HERE
+
+
+
+# Finally, execute the entire file. Make sure that you don't get any error 
+# messages, such as "Error: unexpected symbol in ..." shown in Red. 
+# If you receive an error message, it's probably because you forgot to comment 
+# out some lines. Comment them out so you won't get any error message. 
+
+# End of file
