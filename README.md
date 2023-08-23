@@ -7,7 +7,7 @@ You should follow the daily lecture slides (the html files under the Lecture fol
 
 ## Recorded lecture videos
 Day 1: https://www.youtube.com/watch?v=2BSPjQg6XJQ </br>
-Day 2: https://youtu.be/CRh-nppphnY
-Day 3: https://youtu.be/uIRAICGQzwU
-Day 4: https://youtu.be/FjQbc1nR4eE
-Day 5: https://youtu.be/JrtcBd9UDnk
+Day 2: https://youtu.be/CRh-nppphnY </br>
+Day 3: https://youtu.be/uIRAICGQzwU </br>
+Day 4: https://youtu.be/FjQbc1nR4eE </br>
+Day 5: https://youtu.be/JrtcBd9UDnk </br>
