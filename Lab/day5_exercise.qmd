@@ -1,0 +1,98 @@
+---
+title: "R code for Data Science for Beginners"
+subtitle: " Day 5: Individual Exercise"
+author: "[[Your name please]]"  #If multiple, 'c("A", "B")'
+date: "2024-9-13"  #r Sys.Date()
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# clean up your workspace 
+```{r}
+rm(list=ls(all=TRUE)) # remove all the named objects visible in the environment 
+cat("\014") # clean your console
+```
+
+# Load the data 
+```{r}
+world.data = read.csv("Data/world.csv")
+```
+
+Remember that Quarto uses a relative path so always save your data in the same folder (or under the same folder) with your Quarto code. 
+
+## Democracy and female representation 
+
+Do democratic countries (`democ_regime == "Yes"`) have better female representation than non-democratic countries? Please answer this question by showing some graphs to assess the relationship between these two variables. 
+
+
+### Initial data clean up
+
+Analyze y
+```{r}
+summary(world.data $ women09)
+```
+
+Analyze x
+```{r}
+summary(world.data $ democ_regime)
+```
+
+Note: There are some missing values. Labels are not intuitive. So, we will deal with these two first.
+
+
+### Create a smaller data set that omits NA observations.
+```{r}
+women.dem <- world.data[ is.na(world.data $ women09) == FALSE & is.na(world.data $ democ_regime) == FALSE, ]
+```
+
+Let's make sure that we did this correctly. 
+
+```{r}
+summary(women.dem $ women09)
+summary(women.dem $ democ_regime)
+```
+
+We can see that NA cases have been correctly removed. 
+
+
+### Re-labeling the values
+```{r}
+women.dem $ dem.dum <- factor(women.dem $ democ_regime, 
+                              levels = c("Yes", "No"),
+                              labels = c("Democracy", "Autocracy"))
+
+rm(world.data) # we don't need this anymore
+```
+
+## Q1: Describe Y (numerically and graphically) 
+
+
+### Numerical summary
+
+WRITE YOUR ANSWER (code) HERE
+
+### Graphical summary
+
+WRITE YOUR ANSWER (code) HERE
+
+## Q2: Describe X (numerically and graphically) 
+
+
+### Numerical summary (frequency table)
+
+WRITE YOUR ANSWER (code) HERE
+
+### Graphical summary (bar chart)
+
+WRITE YOUR ANSWER (code) HERE
+
+## Q3: Describe X-Y graphically
+
+### Histograms
+
+WRITE YOUR ANSWER (code) HERE
+
+### Box-plots
+
+WRITE YOUR ANSWER (code) HERE
